@@ -1,0 +1,3 @@
+[submodule "modules/HySpecLab"]
+	path = modules/HySpecLab
+	url = git@github.com:SolidusAbi/HySpecLab.git
