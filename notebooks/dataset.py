@@ -15,7 +15,7 @@ class HSIDataset(Dataset):
             Preprocessing the dataset for removing high-frequency noise. 
             This preprocessing consists of three steps:
                 1. Median filter in the spatial domain.
-                2. Moving average filter in the spectral domain.
+                2. Moving average filter in the spectral domain. (No!)
                 3. Normalization of the data.
 
             Parameters
