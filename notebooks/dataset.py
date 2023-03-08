@@ -30,7 +30,7 @@ class HSIDataset(Dataset):
         max_value = X.max()
 
         X = median(X, footprint=np.ones((3,3,1)))
-        # X = moving_average(X.reshape(-1, X.shape[-1]), 3, padding_size=2).reshape(X.shape[0], X.shape[1], -1)
+        X = moving_average(X.reshape(-1, X.shape[-1]), 3, padding_size=2).reshape(X.shape[0], X.shape[1], -1)
         X = X / (max_value + 1e-3)
         return X
 
