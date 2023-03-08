@@ -1,0 +1,13 @@
+name: CLHU
+channels:
+  - defaults
+dependencies:
+  - pytorch
+  - pandas
+  - matplotlib
+  - scikit-learn
+  - tensorboard
+  - ipykernel
+  - tqdm
+  - scikit-image
+prefix: /home/abian/Workspace/Anaconda/envs/CLHU
