@@ -119,7 +119,8 @@ class Urban(HSIDataset):
         super(Urban, self).__init__()
 
         data = sio.loadmat(os.path.join(root_dir, 'Urban_R162.mat'))
-        y = sio.loadmat(os.path.join(root_dir, 'groundTruth/end4_groundTruth.mat'))
+        # y = sio.loadmat(os.path.join(root_dir, 'groundTruth/end4_groundTruth.mat'))
+        y = sio.loadmat(os.path.join(root_dir, 'groundTruth_Urban_end5/end5_groundTruth.mat'))
 
 
         self.n_row, self.n_col , self.n_bands = data['nRow'].item(), data['nCol'].item(), data['nBand'].item()
