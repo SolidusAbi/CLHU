@@ -6,9 +6,11 @@ DATASET_PATH = '/home/abian/Data/Dataset/HSI/'
 JasperRidge_PATH = os.path.join(DATASET_PATH, 'JasperRidge') 
 Samson_PATH = os.path.join(DATASET_PATH, 'Samson')
 Urban_PATH = os.path.join(DATASET_PATH, 'Urban')
+Cuprite_PATH = os.path.join(DATASET_PATH, 'Cuprite')
 
 # Results path
-RESULTS_PATH = os.path.join(project_root_dir, 'data/results/')
+RESULTS_PATH = '/home/abian/Data/Thesis/CLHU/results/'
+# RESULTS_PATH = os.path.join(project_root_dir, 'data/results/')
 IMG_PATH = os.path.join(project_root_dir, 'data/img/')
 
 # Dependencies

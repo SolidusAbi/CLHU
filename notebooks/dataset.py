@@ -10,7 +10,7 @@ class HSIDataset(Dataset):
     def __init__(self):
         super(HSIDataset, self).__init__()
 
-    def preprocessing(self, X:np.ndarray):
+    def preprocessing(self, X:np.ndarray, max_value:-1):
         '''
             Preprocessing the dataset for removing high-frequency noise. 
             This preprocessing consists of three steps:
@@ -27,12 +27,12 @@ class HSIDataset(Dataset):
         from skimage.filters import median
         from utils import moving_average
 
-        max_value = X.max()
+        if max_value == -1:
+            max_value = X.max() + 1e-3
 
         X = median(X, footprint=np.ones((3,3,1)))
         X = moving_average(X.reshape(-1, X.shape[-1]), 3, padding_size=2).reshape(X.shape[0], X.shape[1], -1)
-        X = X / (max_value + 1e-3)
-        return X
+        return X / max_value
 
 # Jasper Ridge dataset
 class JasperRidge(HSIDataset):
@@ -119,8 +119,8 @@ class Urban(HSIDataset):
         super(Urban, self).__init__()
 
         data = sio.loadmat(os.path.join(root_dir, 'Urban_R162.mat'))
-        # y = sio.loadmat(os.path.join(root_dir, 'groundTruth/end4_groundTruth.mat'))
-        y = sio.loadmat(os.path.join(root_dir, 'groundTruth_Urban_end5/end5_groundTruth.mat'))
+        y = sio.loadmat(os.path.join(root_dir, 'groundTruth/end4_groundTruth.mat'))
+        # y = sio.loadmat(os.path.join(root_dir, 'groundTruth_Urban_end5/end5_groundTruth.mat'))
 
 
         self.n_row, self.n_col , self.n_bands = data['nRow'].item(), data['nCol'].item(), data['nBand'].item()
