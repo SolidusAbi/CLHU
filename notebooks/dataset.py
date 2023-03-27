@@ -10,7 +10,7 @@ class HSIDataset(Dataset):
     def __init__(self):
         super(HSIDataset, self).__init__()
 
-    def preprocessing(self, X:np.ndarray, max_value:-1):
+    def preprocessing(self, X:np.ndarray, max_value=-1):
         '''
             Preprocessing the dataset for removing high-frequency noise. 
             This preprocessing consists of three steps:
