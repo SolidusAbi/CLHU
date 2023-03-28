@@ -183,7 +183,9 @@ class Cuprite(HSIDataset):
         self.n_row, self.n_col, self.n_bands = data['nRow'].item(), data['nCol'].item(), len(data['SlectBands'])
 
         self.X = data['Y'].T.reshape(self.n_row, self.n_col, -1, order='F') # (nRow, nCol, nBand)
-        self.X = self.preprocessing(self.X, max_value=2**16).reshape(-1, self.X.shape[-1]) # (nRow*nCol, nBand)
+        self.X = self.X[:,:, 2:] # Remove the first two slides
+        self.n_bands = self.n_bands - 2
+        self.X = self.preprocessing(self.X).reshape(-1, self.X.shape[-1]) # (nRow*nCol, nBand)
         self.X = tensor(self.X, dtype=torch.float32)
 
         self.E = tensor(y['M'].T, dtype=torch.float32) # (nEndmember, nBand)
