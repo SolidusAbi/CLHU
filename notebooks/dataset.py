@@ -23,7 +23,6 @@ class HSIDataset(Dataset):
                 X : np.ndarray, shape (nRow, nCol, nBand)
                     HSI Cube.
         '''
-
         from skimage.filters import median
         from utils import moving_average
 
@@ -130,6 +129,70 @@ class Urban(HSIDataset):
         self.X = tensor(self.X, dtype=torch.float32)
 
         self.E = tensor(y['M'].T, dtype=torch.float32) # (nEndmember, nBand)
+        self.A = tensor(y['A'].T, dtype=torch.float32) # (nRow*nCol, nEndmember)
+        self.n_endmembers = self.E.shape[0]
+        
+        self.transform = transform
+
+    def __len__(self):
+        return self.n_row * self.n_col
+
+    def __getitem__(self, idx):
+        sample = self.X[idx]
+        if self.transform:
+            sample = self.transform(sample)
+
+        return sample
+
+    def endmembers(self):
+        return self.E
+
+    def abundance(self):
+        return self.A.reshape(self.n_row, self.n_col, -1)
+
+    def image(self):
+        return self.X.reshape(self.n_row, self.n_col, -1)
+    
+class DLR_HySU(HSIDataset):
+    '''
+        DLR_HySU Dataset.
+
+        Cerra, D., Pato, M., Alonso, K., Köhler, C., Schneider, M., de los Reyes, R., ... & Müller, R. (2021). 
+        Dlr hysu—a benchmark dataset for spectral unmixing. Remote Sensing, 13(13), 2559.
+        
+        Attributes:
+        ----------
+            n_row: int
+                Number of rows.
+            n_col: int
+                Number of columns.
+            n_bands: int
+                Number of bands.
+            wv: ndarray, shape (n_bands)
+                Wavelength in μm (1e-6).
+            X: Tensor, shape (n_row*n_col, n_bands)
+                hyperspectral Cube.
+            E: Tensor, shape (n_materials, n_bands)
+                Endmembers of the different material, Grass included.
+            A: Tensor, shape (n_row*n_col, n_materials-1) 
+                Abundance maps without the grass.
+
+    '''
+    def __init__(self, root_dir, transform=None):
+        super(DLR_HySU, self).__init__()
+
+        data = sio.loadmat(os.path.join(root_dir, 'dlr_hysu_R135.mat'))
+        y = sio.loadmat(os.path.join(root_dir, 'gt.mat'))
+
+        self.n_row, self.n_col , self.n_bands = data['nRow'].item(), data['nCol'].item(), data['nBand'].item()
+        self.wv = data['wavelength'].T.reshape(-1)
+
+        self.X = data['Y'].T.reshape(self.n_row, self.n_col, -1) # (nRow, nCol, nBand)
+        self.X = self.preprocessing(self.X).reshape(-1, self.X.shape[-1]) # (nRow*nCol, nBand)
+        self.X = tensor(self.X, dtype=torch.float32)
+
+        self.E = tensor(y['M'].T, dtype=torch.float32) # (nEndmember, nBand)
+        self.E = self.E / (self.E.max() + 1e-3)
         self.A = tensor(y['A'].T, dtype=torch.float32) # (nRow*nCol, nEndmember)
         self.n_endmembers = self.E.shape[0]
         
