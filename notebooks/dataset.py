@@ -74,6 +74,26 @@ class JasperRidge(HSIDataset):
     
 # Samson dataset
 class Samson(HSIDataset):
+    ''' 
+        Samson dataset
+
+        Attributes
+        ----------
+            n_row : int
+                Number of rows.
+            n_col : int
+                Number of columns.
+            n_bands : int
+                Number of bands.
+            n_endmembers : int
+                Number of endmembers.
+            X : torch.Tensor, shape (nRow*nCol, nBand)
+                HSI Cube.
+            E : torch.Tensor, shape (nEndmember, nBand)
+                Endmembers.
+            A : torch.Tensor, shape (nRow*nCol, nEndmember)
+                Abundance.
+    '''
     def __init__(self, root_dir, transform=None):
         super(Samson, self).__init__()
 
@@ -168,13 +188,15 @@ class DLR_HySU(HSIDataset):
                 Number of columns.
             n_bands: int
                 Number of bands.
+            n_endmembers: int
+                Number of endmembers.
             wv: ndarray, shape (n_bands)
                 Wavelength in μm (1e-6).
             X: Tensor, shape (n_row*n_col, n_bands)
                 hyperspectral Cube.
-            E: Tensor, shape (n_materials, n_bands)
+            E: Tensor, shape (n_endmembers, n_bands)
                 Endmembers of the different material, Grass included.
-            A: Tensor, shape (n_row*n_col, n_materials-1) 
+            A: Tensor, shape (n_row*n_col, n_endmembers-1) 
                 Abundance maps without the grass.
 
     '''
