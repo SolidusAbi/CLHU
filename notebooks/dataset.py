@@ -174,6 +174,10 @@ class Urban(HSIDataset):
         return self.X.reshape(self.n_row, self.n_col, -1)
     
 class Cuprite(HSIDataset):
+    ''' 
+        Cuprite dataset. The dataset has been preprocessed by removing the first two slides because
+        they are not useful.
+    '''
     def __init__(self, root_dir, transform=None):
         super(Cuprite, self).__init__()
 
@@ -189,8 +193,10 @@ class Cuprite(HSIDataset):
         self.X = tensor(self.X, dtype=torch.float32)
 
         self.E = tensor(y['M'].T, dtype=torch.float32) # (nEndmember, nBand)
-        # self.A = tensor(y['A'].T, dtype=torch.float32) # (nRow*nCol, nEndmember)
         self.n_endmembers = self.E.shape[0]
+
+        select = data['SlectBands'].reshape(-1).astype(int) - 1 # Indexing in matlab starts from 1
+        self.E = self.E[:, select[2:]]        
 
         self.transform = transform
 
