@@ -250,6 +250,7 @@ class DLR_HySU(HSIDataset):
         super(DLR_HySU, self).__init__()
 
         data = sio.loadmat(os.path.join(root_dir, 'dlr_hysu_R135.mat'))
+        # data = sio.loadmat(os.path.join(root_dir,'all_targets_v2.mat'))
         y = sio.loadmat(os.path.join(root_dir, 'gt.mat'))
 
         self.n_row, self.n_col , self.n_bands = data['nRow'].item(), data['nCol'].item(), data['nBand'].item()
