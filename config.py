@@ -22,3 +22,8 @@ if hyspeclab_dir not in sys.path:
 ipdl_dir = os.path.join(project_root_dir, 'modules/IPDL')
 if ipdl_dir not in sys.path:
     sys.path.append(ipdl_dir)
+
+hsi2rgb_dir = os.path.join(project_root_dir, 'modules/HSI2RGB')
+if hsi2rgb_dir not in sys.path:
+    sys.path.append(hsi2rgb_dir)
+    
