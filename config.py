@@ -8,6 +8,7 @@ Samson_PATH = os.path.join(DATASET_PATH, 'Samson')
 Urban_PATH = os.path.join(DATASET_PATH, 'Urban')
 Cuprite_PATH = os.path.join(DATASET_PATH, 'Cuprite')
 DLR_HySU_PATH = os.path.join(DATASET_PATH, 'DLR_HySU')
+Synthetic_PATH = os.path.join(DATASET_PATH, 'SyntheticData')
 
 # Results path
 RESULTS_PATH = '/home/abian/Data/Thesis/CLHU/results/'
