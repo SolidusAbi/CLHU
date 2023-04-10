@@ -50,18 +50,23 @@ def plot_endmembers(E: np.ndarray, wv:np.ndarray = None, labels:list = None, fig
     with plt.style.context(("seaborn-colorblind")):
         fig, ax = plt.subplots(1, 1, figsize=figsize)
         ticks = np.linspace(*ticks_range, n_ticks)
+
+        y_ticks = np.linspace(*ticks_range, n_ticks)
+        x_ticks = np.linspace(0, n_bands, n_ticks + 1, dtype=int)
+
         if wv is None:
             ax.plot(E.T, label=labels)
             ax.set_xlabel('Bands', fontsize='x-large')
+            ax.set_xticks(x_ticks)
+            ax.set_xlim(0 - 1.5, n_bands + 1.5)
         else:
             ax.plot(wv, E.T, label=labels)
             ax.set_xlabel('Wavelength (nm)', fontsize='x-large')
 
         ax.set_ylabel('Reflectance', fontsize='x-large')           
-        ax.set_yticks(ticks)
+        ax.set_yticks(y_ticks)
         ax.yaxis.set_major_formatter(ticks_formatter) # set format in y ticks labels
         ax.set_ylim(ticks_range[0] - 0.025, ticks_range[1] + 0.025)
-        ax.set_xlim(0 - 1.5, n_bands + 1.5)
         ax.tick_params(axis='both', labelsize='large')
     
         handles, labels = ax.get_legend_handles_labels()
