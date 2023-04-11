@@ -104,7 +104,6 @@ def include_estimation(ax, colors, endmember_estimation:list, labels:list):
                 Labels for the algorithms used in the endmembers estimation.
     '''
     styles = ['-', '--', ':', '-.']
-    labels = ['Ground Truth'] + labels
     n_endmembers, _ = endmember_estimation[0].shape
     for i, endmember in enumerate(endmember_estimation):
         for j in range(n_endmembers):
