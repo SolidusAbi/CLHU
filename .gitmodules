@@ -4,6 +4,3 @@
 [submodule "modules/IPDL"]
 	path = modules/IPDL
 	url = git@github.com:SolidusAbi/IPDL.git
-[submodule "modules/HSI2RGB"]
-	path = modules/HSI2RGB
-	url = git@github.com:HIRIS-Lab/HSI2RGB.git
