@@ -1,4 +1,7 @@
 import os, sys
+from matplotlib import pyplot as plt
+
+plt.style.use('seaborn-v0_8')
 project_root_dir = os.path.dirname(__file__)
 
 # Dataset path
