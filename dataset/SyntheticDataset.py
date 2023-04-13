@@ -10,8 +10,8 @@ class SyntheticDataset(HSIDataset):
 
         self.n_row, self.n_col , self.n_bands = data['nRow'].item(), data['nCol'].item(), data['nBand'].item()
         self.X = np.abs(data['Y'].T) # Because of the noise, there are negative values
-        self.X = self.X.reshape(self.n_row, self.n_col, -1)
-        self.X = self.preprocessing(self.X, max_value=1).reshape(-1, self.X.shape[-1]) # (nRow*nCol, nBand)
+        # self.X = self.X.reshape(self.n_row, self.n_col, -1)
+        # self.X = self.preprocessing(self.X, max_value=1).reshape(-1, self.X.shape[-1]) # (nRow*nCol, nBand)
 
         self.E = sio.loadmat(os.path.join(root_dir, "snr20/M.mat"))['M_avg'].T
         self.A = sio.loadmat(os.path.join(root_dir, "snr20/A.mat"))['A'].T
