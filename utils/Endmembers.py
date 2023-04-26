@@ -40,15 +40,16 @@ def plot_endmembers(E: np.ndarray, wv:np.ndarray = None, labels:list = None, fig
         ticks = np.linspace(*ticks_range, n_ticks)
 
         y_ticks = np.linspace(*ticks_range, n_ticks)
-        x_ticks = np.linspace(0, n_bands, n_ticks + 1, dtype=int)
+        x_ticks = np.linspace(1, n_bands, n_ticks, dtype=int)
 
+        ax.plot(E.T, label=labels)
+        ax.set_xlabel('Bands', fontsize='x-large')
+        ax.set_xticks(x_ticks)
+        ax.set_xlim(0 - 1.5, n_bands + 1.5)
         if wv is None:
-            ax.plot(E.T, label=labels)
             ax.set_xlabel('Bands', fontsize='x-large')
-            ax.set_xticks(x_ticks)
-            ax.set_xlim(0 - 1.5, n_bands + 1.5)
         else:
-            ax.plot(wv, E.T, label=labels)
+            ax.set_xticklabels(wv[x_ticks-1])
             ax.set_xlabel('Wavelength (nm)', fontsize='x-large')
 
         ax.set_ylabel('Reflectance', fontsize='x-large')           
@@ -91,7 +92,7 @@ def include_estimation(ax, colors, endmember_estimation:list, labels:list):
     _ax = ax.twinx()
     for ss, sty in enumerate(labels):
         _ax.plot(np.NaN, np.NaN, ls=styles[ss],
-                label=labels[ss], c=colors[0])
+                label=labels[ss], c='black')
     _ax.get_yaxis().set_visible(False)
     _ax.legend(loc='upper left', fontsize='large')
 

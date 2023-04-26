@@ -289,15 +289,16 @@ class DLR_HySU(HSIDataset):
 class SyntheticDataset(HSIDataset):
     def __init__(self, root_dir, transform=None):
         super(SyntheticDataset, self).__init__()
-        data = sio.loadmat(os.path.join(root_dir, "Y.mat"))
+        print(root_dir)
+        data = sio.loadmat(os.path.join(root_dir, "snr30/Y.mat"))
 
         self.n_row, self.n_col , self.n_bands = data['nRow'].item(), data['nCol'].item(), data['nBand'].item()
         self.X = np.abs(data['Y'].T) # Because of the noise, there are negative values
         # self.X = self.X.reshape(self.n_row, self.n_col, -1)
         # self.X = self.preprocessing(self.X, max_value=1).reshape(-1, self.X.shape[-1]) # (nRow*nCol, nBand)
 
-        self.E = sio.loadmat(os.path.join(root_dir, "M.mat"))['M_avg'].T
-        self.A = sio.loadmat(os.path.join(root_dir, "A.mat"))['A'].T
+        self.E = sio.loadmat(os.path.join(root_dir, "snr30/M.mat"))['M_avg'].T
+        self.A = sio.loadmat(os.path.join(root_dir, "snr30/A.mat"))['A'].T
 
         self.X = torch.tensor(self.X, dtype=torch.float32)
         self.E = torch.tensor(self.E, dtype=torch.float32)
