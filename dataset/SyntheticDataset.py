@@ -9,7 +9,8 @@ from enum import Enum
 class SyntheticDatasetType(Enum):
     SNR10 = 1,
     SNR20 = 2,
-    SNR30 = 3
+    SNR30 = 3,
+    SNR40 = 4
 
 class SyntheticDataset(HSIDataset):
     def __init__(self, root_dir, type:SyntheticDatasetType=SyntheticDatasetType.SNR30, transform=None):
@@ -21,6 +22,8 @@ class SyntheticDataset(HSIDataset):
             snr_path = "snr20"
         elif type == SyntheticDatasetType.SNR30:
             snr_path = "snr30"
+        elif type == SyntheticDatasetType.SNR40:
+            snr_path = "snr40"
         else:
             raise ValueError("Invalid type")
 

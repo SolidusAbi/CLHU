@@ -23,9 +23,10 @@ class JasperRidge(HSIDataset):
         self.n_bands = self.X.shape[1]
         self.n_endmembers = self.E.shape[0]
 
-        self.wv = np.linspace(400, 2500, 224) # 224 bands from 380 to 2500 nm
+        self.wv = np.linspace(400, 2500, 224, dtype=int) # 224 bands from 380 to 2500 nm
         self.wv = self.wv[data['SlectBands'].squeeze()-1].tolist()
 
+        self.test = data['SlectBands'].squeeze()
         self.transform = transform
 
     def __len__(self):

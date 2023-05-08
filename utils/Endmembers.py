@@ -32,7 +32,7 @@ def plot_endmembers(E: np.ndarray, wv:np.ndarray = None, labels:list = None, fig
 
     n_endmembers, n_bands = E.shape
     if labels is None:
-        labels = list(map(lambda x: r'$E_{{{}}}$'.format(x), range(1, n_endmembers+1)))
+        labels = list(map(lambda x: r'$M_{{{}}}$'.format(x), range(1, n_endmembers+1)))
 
     with plt.style.context(("seaborn-colorblind")):
         colors = plt.rcParams['axes.prop_cycle'].by_key()['color']
