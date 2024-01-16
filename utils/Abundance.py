@@ -16,7 +16,7 @@ def show_abundance(A, transpose=True, labels:list = None, figsize:tuple=(7,5)):
     _, _, n_endmembers = A.shape
 
     if labels is None:
-        labels = list(map(lambda x: r'$M_{{{}}}$'.format(x), range(1, n_endmembers+1)))
+        labels = list(map(lambda x: r'$m_{{{}}}$'.format(x), range(1, n_endmembers+1)))
         
     ticks_formatter = plt.FormatStrFormatter('%.1f')
     fig = plt.figure(figsize=(7,5))
@@ -27,7 +27,7 @@ def show_abundance(A, transpose=True, labels:list = None, figsize:tuple=(7,5)):
         plt.axis('off')
         plt.title(labels[i], fontsize='x-large')
         cb = plt.colorbar(format=ticks_formatter, ticks=[data.min() + 1e-3, data.max() - 1e-3],
-                         orientation='horizontal', fraction=0.1, pad=0.01)
+                         orientation='horizontal', fraction=0.1, pad=0.03)
 
     plt.tight_layout()
     return fig

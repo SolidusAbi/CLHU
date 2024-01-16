@@ -31,7 +31,7 @@ class NerveFat(HSIDataset):
         super(NerveFat, self).__init__()
 
         data = np.load(os.path.join(root_dir, 'X_5.npy')) / 2**16# (nBand, nRow, nCol)
-        self.wv = pd.read_csv(os.path.join(root_dir, 'wavelength.csv')).to_numpy().flatten()
+        self.wv = pd.read_csv(os.path.join(root_dir, 'wavelength.csv')).to_numpy().flatten().astype(int)
 
         # clipping data
         self.wv = self.wv[11:-39]

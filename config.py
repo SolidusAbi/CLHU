@@ -5,7 +5,7 @@ plt.style.use('seaborn-v0_8')
 project_root_dir = os.path.dirname(__file__)
 
 # Dataset path
-DATASET_PATH = '/home/abian/Data/Dataset/HSI/'
+DATASET_PATH = '/media/abian/Extreme SSD/WorkSpace/Dataset/HSI/'
 JasperRidge_PATH = os.path.join(DATASET_PATH, 'JasperRidge') 
 Samson_PATH = os.path.join(DATASET_PATH, 'Samson')
 Urban_PATH = os.path.join(DATASET_PATH, 'Urban')
@@ -16,7 +16,7 @@ Apex_PATH = os.path.join(DATASET_PATH, 'Apex/')
 NerveFat_PATH = '/home/abian/Data/Dataset/Japan/Unmixing/Compovision/HSI/A/data'
 
 # Results path
-RESULTS_PATH = '/home/abian/Data/Thesis/CLHU/results/'
+RESULTS_PATH = '/media/abian/Extreme SSD/Thesis/CLHU/results/'
 # RESULTS_PATH = os.path.join(project_root_dir, 'data/results/')
 IMG_PATH = os.path.join(project_root_dir, 'data/img/')
 
