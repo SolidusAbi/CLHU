@@ -16,7 +16,7 @@ Apex_PATH = os.path.join(DATASET_PATH, 'Apex/')
 NerveFat_PATH = '/home/abian/Data/Dataset/Japan/Unmixing/Compovision/HSI/A/data'
 
 # Results path
-RESULTS_PATH = '/media/abian/Extreme SSD/Thesis/CLHU/results/'
+RESULTS_PATH = '/media/abian/Extreme SSD/Thesis/CLHU/review/'
 # RESULTS_PATH = os.path.join(project_root_dir, 'data/results/')
 IMG_PATH = os.path.join(project_root_dir, 'data/img/')
 
