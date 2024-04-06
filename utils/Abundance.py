@@ -1,6 +1,6 @@
 from matplotlib import pyplot as plt
 
-def show_abundance(A, transpose=True, labels:list = None, figsize:tuple=(7,5)):
+def show_abundance(A, transpose=True, labels:list = None, figsize:tuple=(7,5), cmap='viridis'):
     '''
         Show abundance maps.
 
@@ -23,7 +23,7 @@ def show_abundance(A, transpose=True, labels:list = None, figsize:tuple=(7,5)):
     for i in range(n_endmembers):
         data = A[:,:,i].T if transpose else A[:,:,i]
         plt.subplot(3,4,i+1)
-        plt.imshow(data, cmap='viridis')
+        plt.imshow(data, cmap=cmap)
         plt.axis('off')
         plt.title(labels[i], fontsize='x-large')
         cb = plt.colorbar(format=ticks_formatter, ticks=[data.min() + 1e-3, data.max() - 1e-3],
