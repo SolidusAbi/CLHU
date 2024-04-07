@@ -14,7 +14,7 @@ Cuprite_PATH = os.path.join(DATASET_PATH, 'Cuprite')
 DLR_HySU_PATH = os.path.join(DATASET_PATH, 'DLR_HySU')
 Synthetic_PATH = os.path.join(DATASET_PATH, 'SyntheticData')
 Apex_PATH = os.path.join(DATASET_PATH, 'Apex/')
-NerveFat_PATH = '/home/abian/Data/Dataset/Japan/Unmixing/Compovision/HSI/A/data'
+NerveFat_PATH = '/home/abian/Data/Dataset/HSI/Japan/Unmixing/Compovision/HSI/A/data'
 
 # Results path
 RESULTS_PATH = '/media/abian/Extreme SSD/Thesis/CLHU/review/'

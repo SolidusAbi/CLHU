@@ -57,5 +57,5 @@ class SyntheticDataset(HSIDataset):
     def abundance(self):
         return self.A.numpy().reshape(self.n_row, self.n_col, -1)
 
-    def image(self):
-        return self.X.numpy().reshape(self.n_row, self.n_col, -1, order='F')
+    def image(self, order='F'):
+        return self.X.numpy().reshape(self.n_row, self.n_col, -1, order=order)
