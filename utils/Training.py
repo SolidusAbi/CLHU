@@ -31,7 +31,8 @@ def train(model:ContrastiveUnmixing, n_endmembers:int, dataset:Dataset, n_batchs
             x = x.to(device)
             optimizer.zero_grad()
             y = model(x)
-            loss = criterion(y, x) + similarity_weight*similarity_reg(model.ebk) +  sparse_weight*model.sparse_gate.regularize()
+            sparse_reg = model.sparse_gate.regularize() if model.sparse_gate is not None else 0
+            loss = (2*criterion(y, x)) + similarity_weight*similarity_reg(model.ebk) +  sparse_weight*sparse_reg
             epoch_loss += loss.detach().item()
 
             loss.backward()
