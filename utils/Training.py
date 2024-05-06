@@ -20,7 +20,7 @@ def train(model:ContrastiveUnmixing, n_endmembers:int, dataset:Dataset, n_batchs
 
     epoch_iterator = tqdm(
             range(n_epochs),
-            leave=True,
+            leave=False,
             unit="epoch",
             postfix={"tls": "%.4f" % -1},
         )
